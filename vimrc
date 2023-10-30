@@ -11,12 +11,35 @@ filetype on
 " Syntax highlighting
 syntax on
 
+" Change leader hotkey
+let mapleader = "\<Space>"
+
+" Open right terminal
+map <Leader>tt :vert term<CR>
+
 " Tabulation
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
 set smartindent
+
+" Windows splits ----------------------------------
+set splitbelow splitright
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
+
+map <Leader>th <C-w>t<C-w>H
+map <Leader>tk <C-w>t<C-w>K
+" ------------------------------------------------
 
 " Enable mouse
 set mouse=a
@@ -28,33 +51,23 @@ nnoremap <Leader>ncc :set colorcolumn-=80<cr>
 " Background color
 colorscheme desert
 
+" File tree
+inoremap <c-b> <Esc>:Lex<cr>:vertical resize 30<cr>
+nnoremap <c-b> <Esc>:Lex<cr>:vertical resize 30<cr>
+
+" Disable bell sound
+set visualbell
+set t_vb=
 
 " Plugins -------------------------------------------------------------------------------
-
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'https://github.com/ycm-core/YouCompleteMe.git'
-
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
 " Plugins end -------------------------------------------------------------------------------------
+
+" YCM maps
+nnoremap <Leader>jd :YcmCompleter GoTo<CR>

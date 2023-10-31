@@ -65,7 +65,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-"Plugin 'https://github.com/ycm-core/YouCompleteMe.git'
+Plugin 'https://github.com/ycm-core/YouCompleteMe.git'
 
 " For Python
 Plugin 'dense-analysis/ale'

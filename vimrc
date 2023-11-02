@@ -24,6 +24,10 @@ set softtabstop=4
 set autoindent
 set smartindent
 
+" Vertical jumps
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
 " Windows splits ----------------------------------
 set splitbelow splitright
 

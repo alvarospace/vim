@@ -56,9 +56,9 @@ nnoremap <Leader>ncc :set colorcolumn-=80<cr>
 "colorscheme desert
 colorscheme atom-dark-256
 
-" File tree
-inoremap <c-b> <Esc>:Lex<cr>:vertical resize 30<cr>
-nnoremap <c-b> <Esc>:Lex<cr>:vertical resize 30<cr>
+" File tree (Not used now, moved to NerdTree plugin)
+" inoremap <c-b> <Esc>:Lex<cr>:vertical resize 30<cr>
+" nnoremap <c-b> <Esc>:Lex<cr>:vertical resize 30<cr>
 
 " Disable bell sound
 set visualbell
@@ -69,7 +69,17 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'https://github.com/ycm-core/YouCompleteMe.git'
+" Autocompletion
+Plugin 'ycm-core/YouCompleteMe.git'
+
+" Better highlighting
+Plugin 'sheerun/vim-polyglot'
+
+" NerdTree
+Plugin 'preservim/nerdtree'
+
+" Auto-pairs (){}[]
+Plugin 'jiangmiao/auto-pairs'
 
 " For Python
 Plugin 'dense-analysis/ale'
@@ -79,9 +89,19 @@ filetype plugin indent on    " required
 " Plugins end -------------------------------------------------------------------------------------
 
 " YCM maps
-"nnoremap <Leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_enable_semantic_highlighting=1
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+nmap <Leader>yfw <Plug>(YCMFindSymbolInWorkspace)
+nmap <Leader>yfd <Plug>(YCMFindSymbolInDocument)
 map <Leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <Leader>d :YcmCompleter GetDoc<CR>
+nnoremap <Leader>f :YcmCompleter FixIt<CR>
+nnoremap <Leader>F :YcmCompleter Format<CR>
+nmap <Leader>h <plug>(YCMHover)
+
+" NerdTree
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " PYTHON development ---------------------------------------------- 
 au BufNewFile, BufRead *.py

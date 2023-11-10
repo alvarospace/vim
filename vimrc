@@ -47,6 +47,7 @@ map <Leader>tk <C-w>t<C-w>K
 
 " Enable mouse
 set mouse=a
+set ttymouse=sgr
 
 " View a maximum code column line
 nnoremap <Leader>cc :set colorcolumn=80<cr>
@@ -116,12 +117,14 @@ au BufNewFile, BufRead *.py
 set t_Co=256 " Not sure what this does
 
 let g:ale_linters = {'python': ['flake8']}
+let g:ale_python_flake8_options = '--max-line-length=80'
 let g:ale_fixers = {
 \	'python': ['add_blank_lines_for_python_control_statements',
-\	'autopep8',
+\	'black',
 \	'remove_trailing_lines',
 \	'trim_whitespace'],
 \}
+let g:ale_python_black_options='--line-length=80'
 let g:ale_fix_on_save = 1
 
 let python_highlight_all=1
